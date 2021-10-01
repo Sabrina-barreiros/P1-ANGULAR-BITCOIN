@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<div class="container-fluid">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link active" [routerLink]="['/']">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['sabrina-currency']" >Valores das moedas</a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" [routerLink]="['sabrina-wallet']">Carteira</a>
+    </li>
+    </ul>
+  </div>
+</div>
+</nav>
+
+
+
+<p>
+  Último valor do Bitcoin em Real:
+  {{
+    walletService.lastBRLRate
+  }}
+</p>
+
+<div style="padding 20px">
+  <div>
+    <h3>Informações do autor</h3>
+    <p><b>Nome:</b> Sabrina Barreiros Duarte</p>
+    <p><b>RA:</b>0050831821040</p>
+    <p>
+      <a href="https://github.com/Sabrina-barreiros" target="_blank">GitHub</a>
+    </p>
+  </div>
+
+  <router-outlet></router-outlet>
