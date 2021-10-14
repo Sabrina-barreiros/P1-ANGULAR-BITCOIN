@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 <div class="container-fluid">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#">P1 - Bitcoin</a>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -10,7 +10,7 @@
         <a class="nav-link active" [routerLink]="['/']">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['sabrina-currency']" >Valores das moedas</a>
+        <a class="nav-link" [routerLink]="['sabrina-currency']" >Cotações</a>
       </li>
       <li class="nav-item">
       <a class="nav-link" [routerLink]="['sabrina-wallet']">Carteira</a>
@@ -19,15 +19,6 @@
   </div>
 </div>
 </nav>
-
-
-
-<p>
-  Último valor do Bitcoin em Real:
-  {{
-    walletService.lastBRLRate
-  }}
-</p>
 
 <div style="padding 20px">
   <div>
