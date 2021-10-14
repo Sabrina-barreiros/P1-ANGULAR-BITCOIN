@@ -1,33 +1,32 @@
 <section>
-  <h1>Custo do Real</h1>
-  <table>
-    <tr>
-      <th>Data/Horário</th>
-      <th>BTC</th>
-      <th>USD</th>
-      <th>EUR</th>
-    </tr>
-    <tr *ngFor="let item of walletService.brlRate; index as idx">
-      <td>
-        {{ item.time.updated }}
-      </td>
-      <td>
-        <span>R$</span>
-        {{ item.bpi.BRL.rate_float }}
-      </td>
-      <td>
-        <span>R$</span>
-        {{ (item.bpi.BRL.rate_float / item.bpi.USD.rate_float) }}
-      </td>
-      <td>
-        <span>R$</span>
-        {{
-          (
-            item.bpi.BRL.rate_float /
-            this.walletService.bitcoinRates[idx].bpi.EUR.rate_float
-          )
-        }}
-      </td>
-    </tr>
-  </table>
+<hr
+<h1>Cotações</h1>
+<hr>
+<table>
+  <tr>
+    <th>Data/Horário</th>
+    <th>USD</th>
+    <th>EUR</th>
+    <th>BRL</th>
+  </tr>
+  <tr *ngFor="let rate of this.walletService.bitcoinRates; index as i">
+    <td>
+      {{ rate.time.updated }}
+    </td>
+    <td>
+      <span [innerHTML]="rate.bpi.USD.symbol"></span>
+      {{ rate.bpi.USD.rate_float }}
+    </td>
+    <td>
+      <span [innerHTML]="rate.bpi.EUR.symbol"></span>
+      {{ rate.bpi.EUR.rate_float }}
+    </td>
+    <td>
+      <span>R$</span>
+      {{
+          walletService.brlRate[i].bpi.BRL.rate_float
+      }}
+    </td>
+  </tr>
+</table>
 </section>
