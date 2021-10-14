@@ -14,6 +14,14 @@ interface Bitcoin{
       symbol: string;
       rate_float: number
     }
+  }
+}
+
+interface BrlBitcoin{
+  time: {
+    updated: string
+  };
+  bpi: {
     BRL: {
       symbol: string;
       rate_float: number
@@ -25,39 +33,36 @@ interface Bitcoin{
 @Injectable()
 export class SabrinaWalletService {
   bitcoinRates: Array<Bitcoin> = [];
-  brlRate: Array<Bitcoin> = [];
+  brlRate: Array<BrlBitcoin> = [];
 
-  lastBRLRate: number;
-  lastUSDRate: number;
-  lastEURRate: number;
-  previusValue: number;
+  Bitcoin: number = 0;
 
-
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.updateBitcoinRates();
+    setInterval(() =>{
+      this.updateBitcoinRates();
+    },60000);
+  }
 
   updateBitcoinRates(){
     this.http.get<Bitcoin>("https://api.coindesk.com/v1/bpi/currentprice.json").subscribe(data => {
       this.bitcoinRates.push(data);
-      if (data) {
-        this.bitcoinRates.push(data);
-        this.lastEURRate = data.bpi.EUR.rate_float;
-      }
+      
     });
 
-  if (this.bitcoinRates.length !== 0) {
-    this.http
-      .get<Bitcoin>('https://api.coindesk.com/v1/bpi/currentprice/BRL.json')
-      .subscribe((data) => {
-        this.brlRate.push(data);
-
-        this.lastBRLRate = data.bpi.BRL.rate_float;
-        this.lastUSDRate = data.bpi.USD.rate_float;
-
-      });
+    this.http.get<BrlBitcoin>("https://api.coindesk.com/v1/bpi/currentprice/BRL.json").subscribe(data => {
+      this.brlRate.push(data);
+      
+    });
   }
-  setInterval(() => {
-    this.updateBitcoinRates();
-  }, 60000);
-  }}
+
+  addBitcoin(value: number){
+    this.Bitcoin += value;
+  }
+
+  removeBitcoin(value: number){
+    this.Bitcoin -= value;
+  }
+  
+}
 
