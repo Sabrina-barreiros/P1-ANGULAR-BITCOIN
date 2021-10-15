@@ -76,5 +76,33 @@ export class SabrinaWalletService {
     }
   }
   
+  getBtcInBRL(){
+    let length = this.brlRate.length;
+    if(length>0){
+      return this.Bitcoin * this.brlRate[length-1].bpi.BRL.rate_float;
+    }else{
+      return 0;
+    }
+  }
+
+  getBtcInUSD(){
+    let length = this.bitcoinRates.length;
+    if(length>0){
+      return this.Bitcoin * this.bitcoinRates[length-1].bpi.USD.rate_float;
+    }else{
+      return 0;
+    }
+  }
+
+  getBtcInEUR(){
+    let length = this.bitcoinRates.length;
+    if(length>0){
+      return this.Bitcoin * this.bitcoinRates[length-1].bpi.EUR.rate_float;
+    }else{
+      return 0;
+    }
+  }
+
+
 }
 
