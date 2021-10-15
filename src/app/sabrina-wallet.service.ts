@@ -60,12 +60,20 @@ export class SabrinaWalletService {
     });
   }
 
-  addBitcoin(value: number){
-    this.Bitcoin += value;
+  addBitcoin(brValue: number){
+    let length = this.brlRate.length;
+    if(this.brlRate.length>0){
+      let btc = brValue / this.brlRate[length-1].bpi.BRL.rate_float;
+      this.Bitcoin += btc;
+    }
   }
 
-  removeBitcoin(value: number){
-    this.Bitcoin -= value;
+  removeBitcoin(brValue: number){
+    let length = this.brlRate.length;
+    if(this.brlRate.length>0){
+    let btc = brValue / this.brlRate[length-1].bpi.BRL.rate_float;
+    this.Bitcoin -= btc;
+    }
   }
   
 }

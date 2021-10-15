@@ -21,7 +21,7 @@
       <span [innerHTML]="rate.bpi.EUR.symbol"></span>
       {{ rate.bpi.EUR.rate_float }}
     </td>
-    <td *ngIf="walletService.brlRate[i]">
+    <td>
       <span>R$</span>
       {{
           walletService.brlRate[i].bpi.BRL.rate_float
