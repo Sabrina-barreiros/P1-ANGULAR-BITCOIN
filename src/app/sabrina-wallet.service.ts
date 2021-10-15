@@ -36,6 +36,7 @@ export class SabrinaWalletService {
   brlRate: Array<BrlBitcoin> = [];
 
   Bitcoin: number = 0;
+  diff: number = 0;
 
   constructor(private http: HttpClient) { 
     this.updateBitcoinRates();
@@ -46,8 +47,11 @@ export class SabrinaWalletService {
 
   updateBitcoinRates(){
     this.http.get<Bitcoin>("https://api.coindesk.com/v1/bpi/currentprice.json").subscribe(data => {
+      if(this.bitcoinRates.length>0){
+        let length = this.bitcoinRates.length;
+        this.diff = data.bpi.USD.rate_float - this.bitcoinRates[length-1].bpi.USD.rate_float;
+      }
       this.bitcoinRates.push(data);
-      
     });
 
     this.http.get<BrlBitcoin>("https://api.coindesk.com/v1/bpi/currentprice/BRL.json").subscribe(data => {
