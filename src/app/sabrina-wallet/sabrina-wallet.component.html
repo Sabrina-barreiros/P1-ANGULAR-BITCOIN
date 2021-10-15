@@ -1,8 +1,9 @@
 <hr>
 <h2>Carteira</h2>
 <hr>
-<h3>Operações de compra e venda ₿</h3>
-R$ <input #brl type="number" step="0.1" value="100.00">
+<h3>Operações de compra e venda</h3>
+<hr>
+<b>R$ </b> <input #brl type="number" step="0.1" value="100.00">
 <button (click)="walletService.addBitcoin(+brl.value)">+</button>
 <button (click)="walletService.addBitcoin(-brl.value)">-</button>
 <p></p>
